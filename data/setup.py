@@ -7,7 +7,7 @@ This module initializes the display and creates dictionaries of resources.
 import platform
 
 p_name = platform.system()
-print p_name
+print(p_name)
 
 import os
 import pygame as pg

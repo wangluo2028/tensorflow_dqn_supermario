@@ -106,7 +106,7 @@ class AIControl:
                 self.targetDQN.restore(episode)
                 #self.tempDQN.restore(episode)
             except NotFoundError:
-                print "save file not found"
+                print ("save file not found")
 
             copy_ops = self.get_copy_var_ops()
             copy_ops_temp = self.get_copy_var_ops(dest_scope_name="main", src_scope_name="temp")

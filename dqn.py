@@ -54,7 +54,7 @@ class DQN:
                 1, 2, 2, 1], padding='SAME')
             L3 = tf.nn.dropout(L3, keep_prob=keep_prob)
 
-            print L3
+            print (L3)
 
             L3 = tf.reshape(L3, [-1, 256 * 2 * 2])
 

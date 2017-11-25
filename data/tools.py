@@ -5,7 +5,7 @@ import pygame as pg
 from pygame.surfarray import pixels3d, array3d
 from . import constants as c
 import platform
-import setup
+from . import setup
 from collections import deque
 
 

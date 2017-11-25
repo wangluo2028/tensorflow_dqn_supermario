@@ -41,7 +41,7 @@ class DQNManager(Process):
                 self.targetDQN.restore(episode)
                 self.tempDQN.restore(episode)
             except NotFoundError:
-                print "save file not found"
+                print ("save file not found")
 
             self.copy_ops = self.get_copy_var_ops()
             self.copy_ops_temp = self.get_copy_var_ops(dest_scope_name="main", src_scope_name="temp")
@@ -64,7 +64,7 @@ class DQNManager(Process):
     def train(self):
         while True:
             replay_buffer, episode, step_count, max_x, reward_sum = self.train_q.recv()
-            print "received"
+            print ("received")
             self.sess.run(self.copy_ops_temp2)
             for idx in range(4):
                 # minibatch = random.sample(replay_buffer, int(len(replay_buffer) * 0.8))
