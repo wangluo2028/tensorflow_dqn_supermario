@@ -9,10 +9,12 @@ Super Mario Bros for the NES.
 import sys
 import pygame as pg
 from data.main import main
+from data.env import Env
 import cProfile
 
 
 if __name__=='__main__':
-    main()
+    env = Env()
+    main(env)
     pg.quit()
     sys.exit()

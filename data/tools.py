@@ -28,9 +28,9 @@ class Control(object):
         self.done = False
         self.clock = pg.time.Clock()
         self.caption = caption
-        #self.fps = 60
-        self.fps = 100000
-        self.show_fps = False
+        self.fps = 60
+        #self.fps = 100000
+        self.show_fps = True
         self.current_time = 0.0
         self.keys = pg.key.get_pressed()
         self.state_dict = {}
@@ -58,15 +58,12 @@ class Control(object):
         if self.state.mario.dead:
             self.ml_done = True
 
-
-
     def flip_state(self):
         previous, self.state_name = self.state_name, self.state.next
         persist = self.state.cleanup()
         self.state = self.state_dict[self.state_name]
         self.state.startup(self.current_time, persist)
         self.state.previous = previous
-
 
     def get_step(self):
         if p_name == "Darwin":
@@ -113,8 +110,6 @@ class Control(object):
         return (next_state, reward, self.ml_done, self.state.clear,
                 self.max_posision_x, self.state.timeout, position_x)
 
-
-
     def event_loop(self, key):
         if key != None and self.keys != key:
             self.keys = key
@@ -136,7 +131,6 @@ class Control(object):
             if not self.show_fps:
                 pg.display.set_caption(self.caption)
 
-
     def main(self):
         """Main loop for entire program"""
         while not self.done:
@@ -148,7 +142,6 @@ class Control(object):
                 fps = self.clock.get_fps()
                 with_fps = "{} - {:.2f} FPS".format(self.caption, fps)
                 pg.display.set_caption(with_fps)
-
 
 class _State(object):
     def __init__(self):
@@ -180,7 +173,6 @@ class _State(object):
 
     def update(self, surface, keys, current_time):
         pass
-
 
 
 def load_all_gfx(directory, colorkey=(255,0,255), accept=('.png', 'jpg', 'bmp')):

@@ -1,2 +1,6 @@
-model_checkpoint_path: "save_model_targetckpt-0"
-all_model_checkpoint_paths: "save_model_targetckpt-0"
+model_checkpoint_path: "save_model_target.ckpt-8492"
+all_model_checkpoint_paths: "save_model_target.ckpt-8488"
+all_model_checkpoint_paths: "save_model_target.ckpt-8489"
+all_model_checkpoint_paths: "save_model_target.ckpt-8490"
+all_model_checkpoint_paths: "save_model_target.ckpt-8491"
+all_model_checkpoint_paths: "save_model_target.ckpt-8492"

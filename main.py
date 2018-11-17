@@ -40,6 +40,8 @@ class AIControl:
         epoch = 100
         batch_size = 200
         while self.training:
+            replay_buffer_len = len(self.replay_buffer)
+            replay_buffer_len += 0
             if len(self.replay_buffer) > self.MAX_BUFFER_SIZE/10:
                 #replay_buffer, episode, step_count, max_x, reward_sum = self.episode_buffer.popleft()
                 replay_buffer = list(self.replay_buffer)
@@ -50,7 +52,7 @@ class AIControl:
                 sess.run(ops)
                 #sess.run(ops_temp)
 
-                # 50 에피소드마다 저장한다
+                # 保存每50集
                 if self.step % 50 == 0:
                     self.mainDQN.save(episode=self.step)
                     self.targetDQN.save(episode=self.step)
@@ -99,7 +101,7 @@ class AIControl:
             #self.tempDQN = dqn.DQN(sess, self.input_size, self.output_size, name="temp")
             tf.global_variables_initializer().run()
 
-            episode = 8350
+            episode = 8351
             best_x = 0
             try:
                 self.mainDQN.restore(episode)
@@ -157,7 +159,7 @@ class AIControl:
                     #print state
                     step_reward += reward
 
-                    # 앞으로 나아가지 못하는 상황이 2000프레임 이상이면 종료하고 학습한다.
+                    # 如果不能前进的情况超过2000帧，就会终止学习。
                     if now_x <= before_max_x:
                         hold_frame += 1
                         if hold_frame > 2000:
@@ -224,7 +226,7 @@ class AIControl:
                 episode += 1
                 '''
 
-                # 죽은 경우 죽은 지점의 600픽셀 이전에서 살아나서 다시 시도한다
+                # 如果死了，在死点之前存活600个像素，然后重试。
                 '''
                 if done and not timeout:
                     start_position = now_x - 800
@@ -232,7 +234,7 @@ class AIControl:
                     start_position = 0
                 '''
 
-            # 에피소드가 끝나면 종료하지말고 버퍼에있는 트레이닝을 마친다
+            # 当情节结束时，不要放弃，并在缓冲区完成训练
             self.training = False
             training_thread.join()
 

@@ -6,9 +6,9 @@ from . import constants as c
 import pygame as pg
 from pygame.surfarray import pixels3d
 
-def main():
+def main(env):
     """Add states to control here."""
-    run_it = tools.Control(setup.ORIGINAL_CAPTION)
+    run_it = tools.Control(setup.ORIGINAL_CAPTION, env)
     state_dict = {c.MAIN_MENU: main_menu.Menu(),
                   c.LOAD_SCREEN: load_screen.LoadScreen(),
                   c.TIME_OUT: load_screen.TimeOut(),
